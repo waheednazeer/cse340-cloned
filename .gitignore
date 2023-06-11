@@ -6,7 +6,7 @@
 # node_modules is a storage folder for Node and
 # can get very large.
 node_modules
-
+README.md
 # .env file is for local use only. It contains
 # values not to be shared and most of the values
 # will be manually created by you or dynamically # created on the hosting server
@@ -14,4 +14,3 @@ node_modules
 
 # .DS_Store is only for Mac users
 **/.DS_Store
-README.md
