@@ -226,3 +226,25 @@ VALUES   (
     'White',
     5
   );
+
+  INSERT INTO account
+(account_firstname, account_lastname, account_email, account_password)
+VALUES
+('Tony', 'Stark', 'tony@strknet.com', 'IamIronM@n');
+
+UPDATE account
+SET account_type= 'admin'
+WHERE account_id=1;
+
+DELETE FROM account
+WHERE account_id=1;
+
+UPDATE inventory
+SET inv_description=REPLACE('Do you have 6 kids and like to go offroading? The Hummer gives you the small interiors with an engine to get you out of any muddy or rocky situation.','small', 'large')
+WHERE inv_make='GM';
+
+UPDATE inventory
+SET inv_image=REPLACE(inv_image,'/images', '/images/vehicles');
+
+UPDATE inventory
+SET inv_thumbnail=REPLACE(inv_thumbnail,'/images', '/images/vehicles');
