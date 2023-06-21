@@ -1,9 +1,12 @@
+body{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 #top-header{
     background-color: blue;
 }
 .siteName{
     font-size: 35px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
 }
 
 #tools a, #top-header a{
@@ -14,4 +17,32 @@
    text-align: right;
    padding: 5px;
    font-size: 20px;
+}
+ul{
+    margin: auto;
+    list-style: none;
+}
+#inv-display li{
+    border: 5px solid red;
+    margin: 10px;
+}
+
+
+#inv-display{
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    column-gap: 50px;
+}
+#inv-display img{
+    display: block;
+    margin: auto;
+    width: 70%;
+    padding: 35px;
+}
+hr{
+    margin: 0;
+}
+h2 a{
+    text-decoration: none;
 }
