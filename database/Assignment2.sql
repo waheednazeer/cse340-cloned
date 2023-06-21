@@ -240,7 +240,7 @@ DELETE FROM account
 WHERE account_id=1;
 
 UPDATE inventory
-SET inv_description=REPLACE('Do you have 6 kids and like to go offroading? The Hummer gives you the small interiors with an engine to get you out of any muddy or rocky situation.','small', 'large')
+SET inv_description=REPLACE(inv_description,'small', 'large')
 WHERE inv_make='GM';
 
 UPDATE inventory

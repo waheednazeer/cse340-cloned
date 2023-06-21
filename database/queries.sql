@@ -1,4 +1,4 @@
-SELECT * FROM inventory
+SELECT inv_make, inv_model, classification_name FROM inventory
 JOIN
 classification
 ON
