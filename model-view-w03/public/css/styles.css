@@ -3,13 +3,15 @@ body{
 }
 #top-header{
     background-color: blue;
+    padding: 5px;
+    padding-left: 10px;
 }
 .siteName{
     font-size: 35px;
     
 }
 
-#tools a, #top-header a{
+#tools a, #top-header a, nav a{
     text-decoration: none;
     color: black;
 }
@@ -45,4 +47,11 @@ hr{
 }
 h2 a{
     text-decoration: none;
+}
+.namePrice{
+    padding: 10px;
+}
+.namePrice h2{
+    margin-top: 0;
+    margin-bottom: 0;
 }
