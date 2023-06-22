@@ -11,7 +11,7 @@ body{
     
 }
 
-#tools a, #top-header a, nav a{
+#tools a, #top-header a{
     text-decoration: none;
     color: black;
 }
@@ -24,6 +24,58 @@ ul{
     margin: auto;
     list-style: none;
 }
+/* Navigation Menue styling*/
+nav{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: right;
+    gap: 3rem;
+    background: black;
+    width: auto;
+  }
+  nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0; 
+}
+nav ul li:first-child {
+	display: block;
+}
+nav li, nav li:first-child a{
+    display: none;
+}
+nav a {
+	display: block;
+	padding: 5px;
+	text-align: left;
+	text-decoration: none;
+	color: white;
+	font-weight: 400;
+	transition: 0.5s;
+	font-size: clamp(1rem, 2vmin, 1.5rem);
+}
+nav li:first-child::before {
+    content: "≡";
+    font-size: 3rem;
+    margin-right: 10px;
+    color: white;
+   }
+
+   .responsive li, .responsive li:first-child a {
+	display: block;
+}
+
+.responsive li:first-child::before {
+	content: "X";
+  color: red;
+  
+}
+/* Navigation Menue styling ends*/
+main h2{
+    margin: 15px;
+}
+
 #inv-display li{
     border: 5px solid red;
     margin: 10px;
@@ -55,3 +107,138 @@ h2 a{
     margin-top: 0;
     margin-bottom: 0;
 }
+
+/* home page styles*/
+/* Container needed to position the overlay. Adjust the width as needed */
+.container {
+    position: relative;
+    width: 100%;
+    
+  }
+  
+  /* Make the image to responsive */
+  .image {
+    display: block;
+    width: 95%;
+    height: auto;
+    margin: auto;
+  }
+  
+  /* The overlay effect - lays on top of the container and over the image */
+  .overlay {
+    position: absolute;
+    left: 42%;
+    bottom: 0;
+    height: auto;
+    max-height: 100%;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.1); /* Black see-through */
+    color: black;
+    width: 20%;
+    min-width: 156px;
+    transition: .5s ease;
+    opacity:1;
+    color: black;
+    font-size: 20px;
+    text-align: left;
+  }
+  .overlay img{
+    width: 90%;
+    height: 70px;
+  
+  }
+  .overlay{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+  
+  }
+  .overlay h3{
+    margin-bottom: -5px;
+    margin-top: 0;
+  }
+  
+  
+  
+  
+  .cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 0;
+  }
+  .upgrades{
+    grid-column: 1/2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    column-gap: 15px;
+   
+  }
+  .upgrades h4{
+    grid-column: 1/3;
+    grid-row: 1/2;
+    color: black;
+  }
+  
+  #box-1{
+    grid-column: 1/2;
+    grid-row:2/3;
+    background-color: blue;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 50%;
+    text-align: center;
+  }
+  #box-2{
+    grid-column: 2/3;
+    grid-row:2/3;
+    background-color: blue;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 50%;
+    text-align: center;
+  }
+   
+ 
+  #box-3{
+    grid-column: 1/2;
+    grid-row:3/4;
+    background-color: blue;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 50%;
+    text-align: center;
+  }
+  #box-4{
+    grid-column: 2/3;
+    grid-row:3/4;
+    background-color: blue;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 50%;
+    text-align: center;
+  }
+  #box-1 a,#box-2 a,#box-3 a,#box-4 a{
+    text-decoration: none;
+    
+  }
+   
+  .reviews{
+    grid-column: 2/3;
+  }
+  #box-1 img, #box-2 img, #box-3 img, #box-4 img{
+    display: block;
+    margin: auto;
+    height: 100%;
+  }
+  .upgrades a{
+    color:black;
+  }
+  .reviews li{
+    padding-bottom: 10px;
+    color: black;
+  }
+  .reviews h4{
+    margin-left: 23px;
+    color: black;
+  }
