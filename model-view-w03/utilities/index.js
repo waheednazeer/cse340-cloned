@@ -36,15 +36,11 @@ Util.buildClassificationGrid = async function(data){
       grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
       + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
       + 'details"><img src="' + vehicle.inv_thumbnail 
-      +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
-      +' on CSE Motors" /></a>'
+      +'" alt="Image of '+vehicle.inv_year + ` ` +vehicle.inv_make + ' ' + vehicle.inv_model 
+      +'" ></a>'
       grid += '<div class="namePrice">'
-      grid += '<hr />'
-      grid += '<h2>'
-      grid += '<a href="../../inv/detail/' + vehicle.inv_id +'" title="View ' 
-      + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
-      + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
-      grid += '</h2>'
+      grid += '<hr>'
+      grid += '<h2>' + vehicle.inv_make + ' ' + vehicle.inv_model + '</h2>'
       grid += '<span>$' 
       + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
       grid += '</div>'
@@ -67,24 +63,24 @@ Util.buildDetailGrid = async function(data){
   if(data.length > 0){
     grid = '<div id="vehicle-detail">'
     data.forEach(vehicle => { 
-      grid += `<img src="`+ vehicle.inv_image +`" id="inv_image">`
+      grid += `<img src="`+ vehicle.inv_image +`" id="inv_image" alt="picture of lastet car `+vehicle.inv_model+`">`
 
       grid += `<div class="inv-detail">`
       vName=vehicle.inv_year + ` ` + vehicle.inv_make + ` ` + vehicle.inv_model;
-      grid += `<section id="detail-h3">` +`<h3>`+ vName + `</h3>` + `</section>`
-      grid += `<section id="ta-prices">` +`<h4>` + `Throwaway Prices: $` + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + `</h4>` + `</section>`
-      grid += `<section id="inv_year">` + `Inv. Year: ` + vehicle.inv_year +`</section>`
-
-      grid += `<section id="inv_miles">` + `Mileage: ` + new Intl.NumberFormat('en-US').format(vehicle.inv_miles) +`</section>`
+      grid += `<div id="detail-h3">` +`<h3>`+ vName + `</h3>` + `</div>`
       
-      grid += `<section id="inv_price">`+ `Price: `+ 
-      `$` + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</section>'
+      grid += `<div id="inv_year">` + `Inv. Year: ` + vehicle.inv_year +`</div>`
 
-      grid += `<section id="inv_color">` + `Color: ` + vehicle.inv_color +`</section>`
-
-      grid += `<section id="inv_description">` + `Detail: ` + vehicle.inv_description +`</section>`
+      grid += `<div id="inv_miles">` + `Mileage: ` + new Intl.NumberFormat('en-US').format(vehicle.inv_miles) +`</div>`
       
-      grid += `<section id="contact">` + `Interested? Please contact us! | cars@fake.com | 111-2222 ` +`</section>`
+      grid += `<div id="inv_price">`+ `Price: `+ 
+      `$` + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</div>'
+
+      grid += `<div id="inv_color">` + `Color: ` + vehicle.inv_color +`</div>`
+
+      grid += `<div id="inv_description">` + `Detail: ` + vehicle.inv_description +`</div>`
+      
+      grid += `<div id="contact">` + `Interested? Please contact us! | cars@fake.com | 111-2222 ` +`</div>`
 
       grid += `</div>`
     })
