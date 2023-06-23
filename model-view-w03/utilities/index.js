@@ -60,6 +60,7 @@ Util.buildClassificationGrid = async function(data){
 /* **************************************
 * Build the classification view HTML
 * ************************************ */
+
 Util.buildDetailGrid = async function(data){
   let vName;
   let grid
@@ -70,19 +71,21 @@ Util.buildDetailGrid = async function(data){
 
       grid += `<div class="inv-detail">`
       vName=vehicle.inv_year + ` ` + vehicle.inv_make + ` ` + vehicle.inv_model;
-      grid += `<h3>`+ vName + `</h3>`
-      
-      grid += `<span id="inv_year">` + `Inv. Year: ` + vehicle.inv_year +`</span>`
+      grid += `<section id="detail-h3">` +`<h3>`+ vName + `</h3>` + `</section>`
+      grid += `<section id="ta-prices">` +`<h4>` + `Throwaway Prices: $` + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + `</h4>` + `</section>`
+      grid += `<section id="inv_year">` + `Inv. Year: ` + vehicle.inv_year +`</section>`
 
-      grid += `<span id="inv_miles">` + `Mileage: ` + new Intl.NumberFormat('en-US').format(vehicle.inv_miles) +`</span>`
+      grid += `<section id="inv_miles">` + `Mileage: ` + new Intl.NumberFormat('en-US').format(vehicle.inv_miles) +`</section>`
       
-      grid += `<span id="inv_price">`+ `Price: `+ 
-      `$` + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
+      grid += `<section id="inv_price">`+ `Price: `+ 
+      `$` + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</section>'
 
-      grid += `<span id="inv_color">` + `Color: ` + vehicle.inv_color +`</span>`
+      grid += `<section id="inv_color">` + `Color: ` + vehicle.inv_color +`</section>`
 
-      grid += `<span id="inv_description">` + `Detail: ` + vehicle.inv_description +`</span>`
+      grid += `<section id="inv_description">` + `Detail: ` + vehicle.inv_description +`</section>`
       
+      grid += `<section id="contact">` + `Interested? Please contact us! | cars@fake.com | 111-2222 ` +`</section>`
+
       grid += `</div>`
     })
     grid += '</div>'
