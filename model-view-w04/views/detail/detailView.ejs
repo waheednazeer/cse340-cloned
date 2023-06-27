@@ -1,0 +1,7 @@
+<% if (title) { %>
+    <h2 class="detail-heading"><%= title %></h2>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+ <%- grid %>
