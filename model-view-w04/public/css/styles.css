@@ -397,7 +397,9 @@ form{
   border: 0;
   background-color: red;
 }
-
+#pwd-hint{
+  font-size: 10.9px;
+}
 
   @media (max-width: 600px) {
  
