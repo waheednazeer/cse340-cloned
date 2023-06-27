@@ -360,6 +360,43 @@ h2 a{
   border-radius: 50px;
 }
 
+/* Accoung Login view styles*/
+.loginForm{
+  width: fit-content;
+  display: block;
+  margin: auto;
+  background-color: rgb(95, 95, 182);
+  padding: 10px 40px 10px 40px;
+  border-radius: 10px;
+}
+#emailId, #emailPassword{
+  width: 450px;
+  height: 40px;
+  outline: none;
+  border: 0;
+  font-size: 20px;
+}
+.loginForm form label{
+padding: 5px 0 2px 0;
+}
+.loginForm p{
+  text-align: center;
+  }
+form{
+  display: flex;
+  flex-direction: column;
+}
+#btn{
+  margin-top: 10px;
+  width: 100px;
+  padding: 5px;
+  place-self: center;
+  border-radius: 30px;
+  outline: none;
+  border: 0;
+  background-color: red;
+}
+
 
   @media (max-width: 600px) {
  

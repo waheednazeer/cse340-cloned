@@ -11,10 +11,13 @@ const pool = require('./database/index.js');
 const expressLayouts = require("express-ejs-layouts");
 const env = require("dotenv").config();
 const app = express();
-const static = require("./routes/static");
-const baseController = require("./controllers/baseController");
-const inventoryRoute= require('./routes/inventoryRoute.js');
 const utilities= require('./utilities');
+const baseController = require("./controllers/baseController");
+const accountController = require('./controllers/accountController.js');
+const static = require("./routes/static");
+const inventoryRoute= require('./routes/inventoryRoute.js');
+const accountRoute = require('./routes/accountRoute.js')
+
 
 
 /* ***********************
@@ -52,9 +55,13 @@ app.use(static);
 
 // index route
 app.get('/', utilities.Util.handleErrors(baseController.buildHome));
+app.get('/', utilities.Util.handleErrors(accountController.buildLogin));
 
 // Inventory routes
 app.use("/inv", inventoryRoute);
+
+// account page route
+app.use('/account', accountRoute)
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
