@@ -369,13 +369,14 @@ h2 a{
   padding: 10px 40px 10px 40px;
   border-radius: 10px;
 }
-#emailId, #emailPassword{
+#emailId, #emailPassword, #firstName, #lastName{
   width: 450px;
   height: 40px;
   outline: none;
   border: 0;
   font-size: 20px;
 }
+
 .loginForm form label{
 padding: 5px 0 2px 0;
 }

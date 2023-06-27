@@ -1,1 +1,14 @@
-<h2> <%- title %></h2>
+<h2><%- title %></h2>
+<div class="loginForm">
+<form action="/account/register" method="post">
+    <label for="firstName">First Name:</label>
+    <input type="Text" id="firstName" name="account_firstname" required>
+    <label for="lastName">Last Name:</label>
+    <input type="Text" id="lastName" name="account_lastname" required>
+    <label for="emailId">Email:</label>
+    <input type="email" id="emailId" name="account_email" required>
+    <label for="emailPassword">Password:</label>
+    <input type="password" id="emailPassword" name="account_password" required>
+    <input type="submit" value="Register" id="btn">
+</form>
+</div>

@@ -10,6 +10,7 @@ const session = require('express-session');
 const pool = require('./database/index.js');
 const expressLayouts = require("express-ejs-layouts");
 const env = require("dotenv").config();
+const bodyParser = require("body-parser");
 const app = express();
 const utilities= require('./utilities');
 const baseController = require("./controllers/baseController");
@@ -40,6 +41,9 @@ app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
   next()
 })
+// bodyparser middleware for parsing application/x-www-form-urlencoded
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) 
 
 //View Engine and Templates
 app.set("view engine", "ejs");
