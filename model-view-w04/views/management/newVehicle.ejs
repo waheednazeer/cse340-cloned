@@ -12,6 +12,22 @@
     <input type="Text" id="firstName" name="account_firstname" required value="<%= locals.account_firstname %>">
     <label for="lastName">Last Name:</label>
     <input type="Text" id="lastName" name="account_lastname" required value="<%= locals.account_lastname %>">
+    <input type="submit" value="Add Vehicle" id="btn">
+</form>
+</div><h2><%- title %></h2>
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+<div class="loginForm">
+<form action="/account/register" method="post">
+    <label for="firstName">First Name:</label>
+    <input type="Text" id="firstName" name="account_firstname" required value="<%= locals.account_firstname %>">
+    <label for="lastName">Last Name:</label>
+    <input type="Text" id="lastName" name="account_lastname" required value="<%= locals.account_lastname %>">
     <label for="accoundEmail">Email:</label>
     <input type="email" id="accountEmail" name="account_email" required placeholder="Enter a valid email address" value="<%= locals.account_email %>">
     <label for="accountPassword">Password:</label>

@@ -19,6 +19,7 @@ const static = require("./routes/static");
 const inventoryRoute= require('./routes/inventoryRoute.js');
 const accountRoute = require('./routes/accountRoute.js')
 const errorRoute= require('./routes/errorRoute.js');
+const managementRoute = require('./routes/managementRoute.js');
 
 
 /* ***********************
@@ -64,6 +65,7 @@ app.get('/', utilities.Util.handleErrors(accountController.buildLogin));
 // Inventory routes
 app.use("/inv", inventoryRoute);
 app.use("/inv", errorRoute);
+app.use("/inv", managementRoute);
 
 // account page route
 app.use('/account', accountRoute)

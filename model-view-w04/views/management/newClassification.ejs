@@ -1,0 +1,19 @@
+<h2><%- title %></h2>
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+  <%- messages() %>
+<div class="loginForm">
+<form action="/inv/newClassification" method="post">
+    <label for="classificationName">Classification Name: <br>
+    Name must be alphanumeric only
+    </label>
+    <input type="Text" id="classificationName" name="classification_name" required value="<%= locals.classification_name %>" pattern="[a-zA-Z0-9]{2,}">
+  
+    <input type="submit" value="Add Classifcation Name" id="btn">
+</form>
+</div>

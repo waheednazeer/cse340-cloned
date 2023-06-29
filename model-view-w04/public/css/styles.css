@@ -369,12 +369,18 @@ h2 a{
   padding: 10px 40px 10px 40px;
   border-radius: 10px;
 }
-#emailId, #emailPassword, #firstName, #lastName{
+#accountEmail, #accountPassword, #firstName, #lastName, #classificationName{
   width: 450px;
   height: 40px;
   outline: none;
   border: 0;
   font-size: 20px;
+}
+#accountEmail:invalid, #accountPassword:invalid, #classificationName:invalid{
+  border-left: 7px solid red;
+}
+#accountEmail:valid, #accountPassword:valid, #classificationName:valid{
+  border-left: 7px solid green;
 }
 
 .loginForm form label{
