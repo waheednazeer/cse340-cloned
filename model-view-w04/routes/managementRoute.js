@@ -18,5 +18,12 @@ router.post(
     utilities.Util.handleErrors(managementController.addNewClassificationName)
   )
 
+ // Process the registration data
+router.post(
+  "/newVehicle",
+  regValidate.vehicleRules(),
+  regValidate.checkVehicleData,
+  utilities.Util.handleErrors(managementController.addNewVehicle)
+) 
 
 module.exports = router;

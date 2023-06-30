@@ -24,6 +24,22 @@ Util.getNav = async function (req, res, next) {
   return list
 }
 
+/* ***********************************************************
+ * Constructs the nav HTML Select Options for new Vehicle page
+ *********************************************************** */
+Util.getClassificationOptions = async function (req, res, next) {
+  let data = await invModel.getClassifications()
+  let list = `<Select id=invClassification name=classification_id>`
+  
+  data.rows.forEach((row) => {
+    list += `<option value=${row.classification_id}>`
+    list += row.classification_name     
+    list += `</option>`
+  })
+  list += `</select>`
+  return list
+}
+
 /* **************************************
 * Build the classification view HTML
 * ************************************ */
@@ -36,7 +52,7 @@ Util.buildClassificationGrid = async function(data){
       grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
       + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
       + 'details"><img src="' + vehicle.inv_thumbnail 
-      +'" alt="Image of '+vehicle.inv_year + ` ` +vehicle.inv_make + ' ' + vehicle.inv_model 
+      +'" alt="picutre of excellent used '+vehicle.inv_year + ` ` +vehicle.inv_make + ' ' + vehicle.inv_model 
       +'" ></a>'
       grid += '<div class="namePrice">'
       grid += '<hr>'

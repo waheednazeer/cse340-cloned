@@ -55,11 +55,12 @@ const buildNewClassification = async function (req, res, next) {
 const buildNewVehicle = async function (req, res, next) {
     try{
       let nav = await utilities.Util.getNav();
-      
+      let selectOptions = await utilities.Util.getClassificationOptions();
       res.render("./management/newVehicle", {
           title: "Add New Vehicle ",
           message: "Add New Vehicle",
           nav,
+          selectOptions,
           errors: null,     
       })
     } catch(error){
@@ -94,8 +95,8 @@ async function addNewClassificationName(req, res) {
             "notice",
             `Congratulations, new classification ${classification_name} added.`
           )
-      res.status(201).render("./management/newClassification", {
-        title: "New Classification",
+      res.status(201).render("./management/management", {
+        title: "Management",
         nav,
         errors: null,
       })
@@ -109,7 +110,51 @@ async function addNewClassificationName(req, res) {
     }
   }
 
+/* ****************************************
+*  Process adding new vehicle into database
+* *************************************** */
+async function addNewVehicle(req, res) {
+
+  let nav = await utilities.Util.getNav()
+  let selectOptions = await utilities.Util.getClassificationOptions();
+  const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id } = req.body
+
+ 
+  const regResult = await managementModel.addNewVehicle(
+     
+    inv_make, 
+    inv_model,
+    inv_year,
+    inv_description,  
+    inv_image, 
+    inv_thumbnail, 
+    inv_price, 
+    inv_miles, 
+    inv_color,
+    classification_id 
+  )
+
+  if (regResult) {
+    req.flash(
+      "notice",
+      `Congratulations, you have ${inv_make} ${classification_id} added into database.`
+    )
+    res.status(201).render("./management/management", {
+      title: "Management",
+      nav,
+    })
+  } else {
+    req.flash("notice", "Sorry, adding vehicle failed.")
+    res.status(501).render("./management/newVehicle", {
+      title: "New Vehicle",
+      nav,
+      selectOptions,
+    })
+  }
+}
 
 
 
-module.exports = {buildManagement, buildNewClassification, buildNewVehicle, addNewClassificationName};
+
+
+module.exports = {buildManagement, buildNewClassification, buildNewVehicle, addNewClassificationName, addNewVehicle};
