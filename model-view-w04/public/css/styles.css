@@ -381,6 +381,9 @@ form{
 #pwd-hint{
   font-size: 10.9px;
 }
+.managementView a{
+    color:white;
+}
 
   @media (max-width: 600px) {
  
