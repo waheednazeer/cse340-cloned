@@ -110,11 +110,17 @@ async function accountLogin(req, res) {
 *  Deliver login Success view
 * *************************************** */
 async function buildLoginSuccess(req, res, next) {
-  let nav = await utilities.Util.getNav()
-  res.render("account/loginSuccess", {
-    title: "You are login successfully!",
+  let nav = await utilities.Util.getNav();
+
+  req.flash(
+    "notice",
+    `Congratulations, you are loged in.`
+  )
+  res.status(201).render("account/loginSuccess", {
+    title: "Your Account",
     nav,
   })
+
 }
 
 
