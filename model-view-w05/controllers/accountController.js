@@ -106,7 +106,17 @@ async function accountLogin(req, res) {
   }
  }
 
+ /* ****************************************
+*  Deliver login Success view
+* *************************************** */
+async function buildLoginSuccess(req, res, next) {
+  let nav = await utilities.Util.getNav()
+  res.render("account/loginSuccess", {
+    title: "You are login successfully!",
+    nav,
+  })
+}
 
 
 
-module.exports = {buildLogin, buildRegister, registerAccount, accountLogin};
+module.exports = {buildLogin, buildRegister, registerAccount, accountLogin, buildLoginSuccess};

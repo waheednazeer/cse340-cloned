@@ -9,6 +9,10 @@ const accountController = require('../controllers/accountController.js');
 router.get('/login', accountController.buildLogin);
 router.get('/register', accountController.buildRegister);
 
+// Route to login success page
+router.get('/', accountController.buildLoginSuccess);
+
+
 // Process the registration data
 router.post(
     "/register",
