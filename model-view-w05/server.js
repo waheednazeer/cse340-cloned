@@ -62,6 +62,8 @@ app.set("layout", "./layouts/layout"); // not at views root
 
 app.use(static);
 
+app.use(utilities.Util.checkJWTToken)
+
 // index route
 app.get('/', utilities.Util.handleErrors(baseController.buildHome));
 app.get('/', utilities.Util.handleErrors(accountController.buildLogin));

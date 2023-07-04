@@ -81,14 +81,12 @@ validate.checkRegData = async (req, res, next) => {
       body("account_email")
       .trim()
       .isEmail()
-      .normalizeEmail() // refer to validator.js docs
-      .withMessage("A valid email is required.")
-      .custom(async (account_email) => {
-      const emailExists = await accountModel.checkExistingEmail(account_email)
-      if (!emailExists){
-          throw new Error("You are not registered! please register")
-      }
-      }),
+      .withMessage("A valid email is required."),
+
+      body("account_password")
+      .trim()
+      .isLength({min: 1})
+      .withMessage("password can be kept empty"),
   ]
 }
 

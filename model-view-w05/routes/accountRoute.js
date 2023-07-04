@@ -6,11 +6,11 @@ const utilities = require('../utilities/index.js')
 const accountController = require('../controllers/accountController.js'); 
 
 // Route to build inventory by classification view
-router.get('/login', accountController.buildLogin);
-router.get('/register', accountController.buildRegister);
+router.get('/login', utilities.Util.handleErrors(accountController.buildLogin));
+router.get('/register', utilities.Util.handleErrors(accountController.buildRegister));
 
 // Route to login success page
-router.get('/', accountController.buildLoginSuccess);
+router.get('/', utilities.Util.checkLogin, utilities.Util.handleErrors(accountController.buildLoginSuccess));
 
 
 // Process the registration data
