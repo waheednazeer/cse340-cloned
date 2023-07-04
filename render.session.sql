@@ -1,1 +1,1 @@
-SELECT * FROM inventory; ALTER
+SELECT * from inventory;
