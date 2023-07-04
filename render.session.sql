@@ -1,2 +1,2 @@
-SELECT * FROM account;
+SELECT * FROM inventory;
 
