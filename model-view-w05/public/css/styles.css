@@ -385,6 +385,11 @@ form{
 #inventoryManagementList{
   margin-left: 25px;
 }
+#inventoryDisplay a{
+  color: white;
+  margin-left:20px ;
+
+}
 
 
 
