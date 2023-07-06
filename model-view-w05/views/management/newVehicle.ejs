@@ -20,11 +20,11 @@
     <input type="Text" id="invModel" name="inv_model" required value="<%= locals.inv_model %>" pattern="[a-zA-Z0-9-/s]{3,}" placeholder="min 3 letters">
     
     <label for="invDescription">Description:</label>
-    <textarea  id="invDescription" name="inv_description" required value="<%= locals.inv_description %>"  placeholder="min 3 letters"></textarea>
+    <textarea  id="invDescription" name="inv_description" required placeholder="min 3 letters"><%= locals.inv_description %></textarea>
     <label for="invImage">Image:</label>
-    <input type="Text" id="invImage" name="inv_image" required value="<%= locals.inv_image %>" pattern="[a-zA-Z0-9-\/]{3,}" placeholder="/images/vehicles/no-image.png">
+    <input type="Text" id="invImage" name="inv_image" required value="<%= locals.inv_image %>" pattern="^[^@+\s]+[a-zA-Z0-9\S]\.[a-z]{3}$" placeholder="/images/vehicles/no-image.png">
     <label for="invThumbnail">Thumbnail:</label>
-    <input type="Text" id="invThumbnail" name="inv_thumbnail" required value="<%= locals.inv_thumbnail %>"  placeholder="/images/vehicles/no-image.png">
+    <input type="Text" id="invThumbnail" name="inv_thumbnail" required value="<%= locals.inv_thumbnail %>" pattern="^[^@+\s]+[a-zA-Z0-9\S]\.[a-z]{3}$" placeholder="/images/vehicles/no-image.png">
     
     <label for="invPrice">Price:</label>
     <input type="number" id="invPrice" name="inv_price" required value="<%= locals.inv_price %>" pattern="[1-9]{3,}" placeholder="Decimal or integer">
