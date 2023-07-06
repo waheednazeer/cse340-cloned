@@ -9,12 +9,15 @@ const utilities = require("../utilities/")
 const buildManagement = async function (req, res, next) {
   try{
     let nav = await utilities.Util.getNav();
-    
+
+    const classificationSelect = await utilities.Util.getClassificationOptions();
+
     res.render("./management/management", {
         title: "Vehicle Management ",
         message: "Vehicle Management System",
         nav,
-        errors: null,      
+        errors: null, 
+        classificationSelect,     
     })
   } catch(error){
     let nav = await utilities.Util.getNav();

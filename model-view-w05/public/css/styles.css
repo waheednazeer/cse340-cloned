@@ -382,6 +382,11 @@ form{
 .managementView a{
     color:white;
 }
+#inventoryManagementList{
+  margin-left: 25px;
+}
+
+
 
   @media (max-width: 600px) {
 

@@ -10,4 +10,6 @@ router.get('/type/:classificationId', utilities.Util.handleErrors(invController.
 // Route to detail inventory by detail view- inv_id
 router.get('/detail/:invId', utilities.Util.handleErrors(invController.invCont.detailByInvId));
 
+router.get("/getInventory/:classification_id", utilities.Util.handleErrors(invController.invCont.getInventoryJSON));
+
 module.exports = router;
