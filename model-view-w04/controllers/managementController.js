@@ -137,7 +137,7 @@ async function addNewVehicle(req, res) {
   if (regResult) {
     req.flash(
       "notice",
-      `Congratulations, you have ${inv_make} ${classification_id} added into database.`
+      `Congratulations, you have added ${inv_make} ${inv_model} into database.`
     )
     res.status(201).render("./management/management", {
       title: "Management",
