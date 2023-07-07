@@ -1,2 +1,2 @@
 SELECT * from classification;
---DELETE FROM classification Where classification_id=25;
+--DELETE FROM classification Where classification_id=29;

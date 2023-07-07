@@ -82,8 +82,8 @@ const buildNewVehicle = async function (req, res, next) {
 *  Process New Classification
 * *************************************** */
 async function addNewClassificationName(req, res) {
-
-    let nav = await utilities.Util.getNav()
+    let nav;
+    nav = await utilities.Util.getNav()
     const { classification_name } = req.body
 
  
@@ -98,6 +98,7 @@ async function addNewClassificationName(req, res) {
             "notice",
             `Congratulations, new classification ${classification_name} added.`
           )
+          nav = await utilities.Util.getNav()
       res.status(201).render("./management/management", {
         title: "Management",
         nav,
