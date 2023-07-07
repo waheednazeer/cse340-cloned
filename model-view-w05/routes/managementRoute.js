@@ -22,7 +22,7 @@ router.post(
 router.post(
   "/newVehicle",
   regValidate.vehicleRules(),
-  regValidate.checkVehicleData,
+  regValidate.checkInventoryData,
   utilities.Util.handleErrors(managementController.addNewVehicle)
 ) 
 

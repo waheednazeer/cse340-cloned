@@ -4,6 +4,9 @@ body{
   background-image: url(../images/site/small_check.jpg);
   color: white;
 }
+h1{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 .wrapper{
   background-color: black;
   width: 95%;
@@ -335,20 +338,27 @@ h2 a{
 
 /* Accoung Login view styles*/
 .loginForm{
-  width: fit-content;
+  width: 70%;
   display: block;
   margin: auto;
   background-color: rgb(95, 95, 182);
   padding: 10px 40px 10px 40px;
   border-radius: 10px;
 }
-input{
-  width: 450px;
+input, #classificationList{
+  width: 100%;
   height: 40px;
   outline: none;
   border: 0;
   font-size: 20px;
 }
+#invDescription{
+  width: 100%;
+  font-size: 20px;
+  
+}
+
+
 input:invalid, textarea:invalid{
   border-left: 7px solid red;
 }
@@ -368,7 +378,7 @@ form{
 }
 #btn{
   margin-top: 10px;
-  width: 130px;
+  width: fit-content;
   padding: 5px;
   place-self: center;
   border-radius: 30px;

@@ -44,6 +44,46 @@ Util.getClassificationOptions = async function (req, res, next) {
   return list
 }
 
+/* ***********************************************************
+ * buildClassificationList for edit inventory
+ *********************************************************** */
+Util.buildClassificationList = async function (req, res, next) {
+  let data = await invModel.getClassifications()
+  let list = `<Select id=classificationList name=classification_id>`
+  
+  data.rows.forEach((row) => {
+    list += `<option value=${row.classification_id}>`
+    list += row.classification_name     
+    list += `</option>`
+  })
+  list += `</select>`
+  return list
+}
+
+/* ***********************************************************
+ * Changing default option selected
+ *********************************************************** */
+Util.selectFromClassificationList = async function (classification_id) {
+  let data = await invModel.getClassifications()
+  let list = `<Select id=classificationList name=classification_id>`
+  
+  data.rows.forEach((row) => {
+    if (row.classification_id == classification_id){
+      list += `<option value=${row.classification_id} selected>`
+      list += row.classification_name     
+      list += `</option>`
+    }else{
+    list += `<option value=${row.classification_id}>`
+    list += row.classification_name     
+    list += `</option>`
+    }
+  })
+  list += `</select>`
+  return list
+}
+
+
+
 /* **************************************
 * Build the classification view HTML
 * ************************************ */
