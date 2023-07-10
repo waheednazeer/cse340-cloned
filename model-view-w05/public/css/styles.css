@@ -414,6 +414,9 @@ form{
 .updateLink{
   margin-left: 40px;
 }
+.updateLink a{
+  color: white;
+}
 
 
   @media (max-width: 600px) {

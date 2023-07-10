@@ -35,14 +35,16 @@ async function buildRegister(req, res, next) {
 * *************************************** */
 async function buildUpdate(req, res, next) {
   let nav = await utilities.Util.getNav()
+  //const { account_firstname, account_lastname, account_email } = req.body
   let user= res.locals.user;
-  if (user){
-
-  }
+ 
   res.render("account/update", {
     title: "Update your account",
     nav,
     errors: null,
+    account_firstname: user.account_firstname, 
+    account_lastname: user.account_lastname, 
+    account_email: user.account_email
   })
 }
 
