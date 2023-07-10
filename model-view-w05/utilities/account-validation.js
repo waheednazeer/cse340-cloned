@@ -47,7 +47,35 @@ validate.registationRules = () => {
         .withMessage("Password does not meet requirements."),
     ]
   }
-  
+ /*  **********************************
+ *  Update Data Validation Rules
+ * ********************************* */
+validate.accountUpdateRules = () => {
+  return [
+    // firstname is required and must be string
+    body("account_firstname")
+      .trim()
+      .isLength({ min: 1 })
+      .withMessage("Please provide a first name."), // on error this message is sent.
+
+    // lastname is required and must be string
+    body("account_lastname")
+      .trim()
+      .isLength({ min: 2 })
+      .withMessage("Please provide a last name."), // on error this message is sent.
+
+    // valid email is required and cannot already exist in the database
+      body("account_email")
+      .trim()
+      .isEmail()
+      .normalizeEmail() // refer to validator.js docs
+      .withMessage("A valid email is required."),
+
+  ]
+}
+ 
+
+
   
 /* ******************************
  * Check data and return errors or continue to registration
@@ -58,9 +86,9 @@ validate.checkRegData = async (req, res, next) => {
   errors = validationResult(req)
   if (!errors.isEmpty()) {
     let nav = await utilities.Util.getNav()
-    res.render("account/register", {
+    res.render("account/", {
       errors,
-      title: "Registration",
+      title: "Update Account",
       nav,
       account_firstname,
       account_lastname,
@@ -86,7 +114,7 @@ validate.checkRegData = async (req, res, next) => {
       body("account_password")
       .trim()
       .isLength({min: 1})
-      .withMessage("password can be kept empty"),
+      .withMessage("password can not be kept empty"),
   ]
 }
 

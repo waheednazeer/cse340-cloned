@@ -25,8 +25,16 @@ router.post(
 //Process the Update data
 router.post(
   "/update",
+  regValidate.accountUpdateRules(),
+  regValidate.checkRegData,
   utilities.Util.handleErrors(accountController.updateAccount)
 )
+//Process the Update password
+router.post(
+  "/update-password",
+  utilities.Util.handleErrors(accountController.updatePassword)
+)
+
 
 // Process the login request
 router.post(

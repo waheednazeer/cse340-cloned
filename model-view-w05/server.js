@@ -69,6 +69,13 @@ app.get('*',utilities.Util.handleErrors(utilities.Util.checkUser));
 app.get('/', utilities.Util.handleErrors(baseController.buildHome));
 app.get('/', utilities.Util.handleErrors(accountController.buildLogin));
 
+app.get('/logout', async(req, res)=>{
+  res.clearCookie("jwt");
+ 
+  console.log('cookie deleted')
+  res.redirect('/');
+
+})
 
 // Inventory routes
 app.use("/inv", inventoryRoute);

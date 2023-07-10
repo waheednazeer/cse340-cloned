@@ -244,6 +244,7 @@ const updateAccount = async function (req, res, next) {
  * ************************** */
 const updatePassword = async function (req, res, next) {
 
+  console.log("PASSWORD CONTROLLOER");
   let nav = await utilities.Util.getNav()
   const {
     account_password,
@@ -261,12 +262,10 @@ const updatePassword = async function (req, res, next) {
     res.redirect("/account")
   } else {
    
-    const itemName = updateResult.account_firstname;
     req.flash("notice", "Sorry, the insert failed.")
     res.status(501).render("account/loginSuccess", {
-    title: "Edit " + itemName,
+    title: "Edit ",
     nav,
-    classificationSelect: classificationSelect,
     errors: null,
     account_password,
     account_id
