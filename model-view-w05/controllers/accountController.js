@@ -45,7 +45,7 @@ async function buildUpdate(req, res, next) {
     nav,
     errors: null,
     account_firstname: accountData.account_firstname, 
-    account_lastname: accountData.account_lasttname, 
+    account_lastname: accountData.account_lastname, 
     account_email: accountData.account_email,
     account_id: account_id
 
