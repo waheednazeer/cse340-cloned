@@ -337,7 +337,7 @@ h2 a{
 }
 
 /* Accoung Login view styles*/
-.loginForm, .passwordForm{
+.loginForm, .passwordForm, .deleteForm{
   width: 70%;
   display: block;
   margin: auto;
@@ -347,6 +347,12 @@ h2 a{
 }
 .passwordForm{
   margin-top: 30px;
+}
+.deleteForm p{
+  width: 100%;
+  background-color: red;
+  padding: 6px;
+
 }
 input, #classificationList{
   width: 100%;

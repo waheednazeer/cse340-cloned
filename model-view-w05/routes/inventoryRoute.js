@@ -15,11 +15,18 @@ router.get("/getInventory/:classification_id", utilities.Util.handleErrors(invCo
 
 // Inventory Edit route
 router.get("/edit/:inv_id", utilities.Util.handleErrors(invController.invCont.editInventoryView));
+
+// Inventory delete route
+router.get("/delete/:inv_id", utilities.Util.handleErrors(invController.invCont.deleteInventoryView));
+
+
 // route for update inventory
 router.post(
     "/update/",
     regValidate.vehicleRules(),
     regValidate.checkInventoryData, 
     utilities.Util.handleErrors(invController.invCont.updateInventory))
+
+
 
 module.exports = router;

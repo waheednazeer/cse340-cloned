@@ -102,6 +102,7 @@ invCont.editInventoryView = async function (req, res, next) {
   })
 }
 
+
 /* ***************************
  *  Update Inventory Data
  * ************************** */
@@ -162,6 +163,29 @@ invCont.updateInventory = async function (req, res, next) {
   }
 }
 
+/* ***************************
+ *  Build edit inventory view
+ * ************************** */
+invCont.deleteInventoryView = async function (req, res, next) {
+  const inv_id = parseInt(req.params.inv_id)
+  let nav = await utilities.Util.getNav()
+  const itemData = await invModel.getInventoryDetailByinvId(inv_id)
+  const classificationSelect = await utilities.Util.selectFromClassificationList(itemData[0].classification_id)
+    
+  const itemName = `${itemData[0].inv_make} ${itemData[0].inv_model}`
+  res.render("./inventory/deleteInventory", {
+    title: "Edit " + itemName,
+    nav,
+    classificationSelect: classificationSelect,
+    errors: null,
+    inv_id: itemData[0].inv_id,
+    inv_make: itemData[0].inv_make,
+    inv_model: itemData[0].inv_model,
+    inv_year: itemData[0].inv_year,
+    inv_price: itemData[0].inv_price,
+    
+  })
+}
 
 
 module.exports = {invCont};
