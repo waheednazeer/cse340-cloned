@@ -36,16 +36,17 @@ async function buildRegister(req, res, next) {
 async function buildUpdate(req, res, next) {
   let nav = await utilities.Util.getNav()
   const account_id = parseInt(req.params.account_id)
+  const accountData = await accountModel.getAccountById(account_id)
+  console.log(accountData.account_firstname);
   //const { account_firstname, account_lastname, account_email } = req.body
-  let user= res.locals.user;
- 
+   
   res.render("account/update", {
     title: "Update your account",
     nav,
     errors: null,
-    account_firstname: user.account_firstname, 
-    account_lastname: user.account_lastname, 
-    account_email: user.account_email,
+    account_firstname: accountData.account_firstname, 
+    account_lastname: accountData.account_lasttname, 
+    account_email: accountData.account_email,
     account_id: account_id
 
   })
