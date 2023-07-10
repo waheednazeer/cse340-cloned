@@ -30,6 +30,22 @@ async function buildRegister(req, res, next) {
   })
 }
 
+  /* ****************************************
+*  Deliver Update view
+* *************************************** */
+async function buildUpdate(req, res, next) {
+  let nav = await utilities.Util.getNav()
+  let user= res.locals.user;
+  if (user){
+
+  }
+  res.render("account/update", {
+    title: "Update your account",
+    nav,
+    errors: null,
+  })
+}
+
   
 /* ****************************************
 *  Process Registration
@@ -146,19 +162,44 @@ async function accountLogin(req, res, next) {
 * *************************************** */
 async function buildLoginSuccess(req, res, next) {
   let nav = await utilities.Util.getNav();
+  let managementInv;
+  let updateAccount; 
+  let user= res.locals.user;
+  let userType;
+  if(user){
+    if(user.account_type== 'client'){
+      userType= user.account_type;
+      managementInv = null;
+      updateAccount = `<p class="updateLink"><a href="/account/update/`+ user.account_id +`">`+ `Update your account`+ `</a>`+`</p>`
+    }else{
+      userType= user.account_type;
+      updateAccount = `<p class="updateLink"><a href="/account/update/`+ user.account_id +`">`+ `Update your account`+ `</a>`+`</p>` 
+      managementInv = `<p class="updateLink"><a href="/inv">`+ `Manage Inventory`+ `</a>`+`</p>` 
+    }
+
+  }
 
   req.flash(
     "notice",
-    `Congratulations, you are loged in.`
+    `You are loged in.`
   )
   res.status(201).render("account/loginSuccess", {
-    title: "Your Account",
+    title: "Welcome " + userType,
     nav,
     errors: null,
+    updateAccount,
+    managementInv,
   })
 
 }
 
 
 
-module.exports = {buildLogin, buildRegister, registerAccount, accountLogin, buildLoginSuccess};
+module.exports = {
+  buildLogin, 
+  buildRegister, 
+  registerAccount, 
+  accountLogin, 
+  buildLoginSuccess,
+  buildUpdate,
+};

@@ -182,7 +182,7 @@ Util.checkLogin = (req, res, next) => {
         res.locals.user= null;
       }else{
         console.log(decodedToken);
-        let user= decodedToken.account_type;
+        let user= decodedToken;
         res.locals.user= user;
         console.log("User"+ user);
         next();
@@ -190,7 +190,8 @@ Util.checkLogin = (req, res, next) => {
    })
   }else{
     res.locals.user= null;
-    res.redirect('/account/login')
+    //res.redirect('/')
+    next();
   } 
 
  }

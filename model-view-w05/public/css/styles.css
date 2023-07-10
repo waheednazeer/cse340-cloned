@@ -411,6 +411,9 @@ form{
   column-gap: 20px;
   justify-content: right;
 }
+.updateLink{
+  margin-left: 40px;
+}
 
 
   @media (max-width: 600px) {
