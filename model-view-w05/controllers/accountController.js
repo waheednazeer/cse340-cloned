@@ -39,7 +39,7 @@ async function buildUpdate(req, res, next) {
   const accountData = await accountModel.getAccountById(account_id)
      
   res.render("account/update", {
-    title: "Update your account",
+    title: accountData.account_firstname + ": Update your account",
     nav,
     errors: null,
     account_firstname: accountData.account_firstname, 
@@ -279,8 +279,9 @@ const updatePassword = async function (req, res, next) {
 
   if (updateResult) {
     const itemName = "Password";
-    req.flash("notice", `The ${itemName} was successfully updated.`)
-    res.redirect("/account")
+    req.flash("notice", `The ${itemName} was successfully updated. Please login with new password!`)
+    res.clearCookie("jwt");
+    res.redirect("/account/login")
   } else {
    
     req.flash("notice", "Sorry, the insert failed.")
