@@ -31,5 +31,8 @@
       <span id="pwd-hint">Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span>
       <input type="password" id="accountPassword" name="account_password" required required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
       <input type="submit" value="Update Password" id="btn">
+
+      <input type="hidden" name="account_id"
+    <% if(locals.account_id) { %> value="<%= locals.account_id %>"<% } %>>
   </form>
   </div>

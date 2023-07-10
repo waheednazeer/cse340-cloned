@@ -85,10 +85,12 @@ async function registerAccount(req, res) {
         "notice",
         `Congratulations, you\'re registered ${account_firstname}. Please log in.`
       )
+      let user= null;
       res.status(201).render("account/login", {
         title: "Login",
         nav,
         errors: null,
+        user,
       })
     } else {
       req.flash("notice", "Sorry, the registration failed.")
@@ -143,12 +145,14 @@ async function accountLogin(req, res, next) {
   //verif ends
    return res.redirect("/account/")
    }else{
+    let user = null;
     req.flash("notice", "Please check your password and try again.")
     res.status(400).render("account/login", {
      title: "Login",
      nav,
      errors: null,
      account_email,
+     user,
     })
    }
 
@@ -219,8 +223,9 @@ const updateAccount = async function (req, res, next) {
   )
 
   if (updateResult) {
-    const itemName = "Account";
-    req.flash("notice", `The ${itemName} was successfully updated.`)
+    const itemName = account_firstname;
+    req.flash("notice", `The ${itemName} was successfully updated.`);
+    res.clearCookie("jwt");
     res.redirect("/account")
   } else {
    
@@ -245,14 +250,32 @@ const updateAccount = async function (req, res, next) {
 const updatePassword = async function (req, res, next) {
 
   console.log("PASSWORD CONTROLLOER");
+  
   let nav = await utilities.Util.getNav()
   const {
     account_password,
     account_id,
 
   } = req.body
+
+   // Hash the password before storing
+   let hashedPassword
+   try {
+     // regular password and cost (salt is generated automatically)
+     hashedPassword = await bcrypt.hashSync(account_password, 10)
+   } catch (error) {
+     req.flash("notice", 'Sorry, there was an error processing the registration.')
+     res.status(500).render("/account", {
+       title: "Account Updated",
+       nav,
+       errors: null,
+     })
+   }
+
+  console.log("account_id "+ account_id);
+
   const updateResult = await accountModel.updatePassword(
-    account_password,
+    hashedPassword,
     account_id,
   )
 

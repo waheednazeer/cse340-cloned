@@ -1,2 +1,2 @@
 SELECT * from account;
---DELETE FROM classification Where classification_id=29;
+--DELETE FROM account Where account_id=11;
