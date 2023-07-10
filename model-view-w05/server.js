@@ -78,6 +78,7 @@ app.use("/inv", managementRoute);
 // account page route
 app.use('/account', accountRoute)
 
+
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Ohh, we can not serve you. Sorry, we appear to have lost that page.'})
@@ -93,7 +94,7 @@ process.on('uncaughtException', (err, origin) => {
 app.use(async (err, req, res, next) => {
   let nav = await utilities.Util.getNav()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  if(err.status == 404){ message = err.message} else {message = "Undefined input"}
+  if(err.status == 500){ message = err.message} else {message = "Undefined input"}
   res.render("errors/error", {
     title: err.status || 'Server Error',
     message,

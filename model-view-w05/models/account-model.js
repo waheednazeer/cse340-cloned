@@ -39,4 +39,19 @@ async function getAccountByEmail (account_email) {
   }
 }
 
-  module.exports= {registerAccount, checkExistingEmail, getAccountByEmail};
+
+/* ***************************
+ *  Update Account Data
+ * ************************** */
+async function updateAccount(account_firstname, account_lastname, account_email, account_id){
+  console.log("Account ID "+account_id);
+  try {
+    const sql = "UPDATE account SET account_firstname=$1, account_lastname=$2, account_email=$3 WHERE account_id=$4 RETURNING *"
+    return await pool.query(sql, [account_firstname, account_lastname, account_email, account_id])
+  } catch (error) {
+    return error.message
+  }
+}
+
+
+  module.exports= {registerAccount, checkExistingEmail, getAccountByEmail, updateAccount};

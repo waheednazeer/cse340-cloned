@@ -35,6 +35,7 @@ async function buildRegister(req, res, next) {
 * *************************************** */
 async function buildUpdate(req, res, next) {
   let nav = await utilities.Util.getNav()
+  const account_id = parseInt(req.params.account_id)
   //const { account_firstname, account_lastname, account_email } = req.body
   let user= res.locals.user;
  
@@ -44,7 +45,9 @@ async function buildUpdate(req, res, next) {
     errors: null,
     account_firstname: user.account_firstname, 
     account_lastname: user.account_lastname, 
-    account_email: user.account_email
+    account_email: user.account_email,
+    account_id: account_id
+
   })
 }
 
@@ -196,6 +199,49 @@ async function buildLoginSuccess(req, res, next) {
 }
 
 
+/* ***************************
+ *  Update Account Data
+ * ************************** */
+const updateAccount = async function (req, res, next) {
+
+  let nav = await utilities.Util.getNav()
+  const {
+    account_firstname,
+    account_lastname,
+    account_email,
+    account_id,
+
+  } = req.body
+  const updateResult = await accountModel.updateAccount(
+    account_firstname,
+    account_lastname,
+    account_email,
+    account_id,
+  )
+
+  if (updateResult) {
+    const itemName = updateResult.account_firstName;
+    req.flash("notice", `The ${itemName} was successfully updated.`)
+    res.redirect("/account")
+  } else {
+   
+    const itemName = updateResult.account_firstname;
+    req.flash("notice", "Sorry, the insert failed.")
+    res.status(501).render("account/loginSuccess", {
+    title: "Edit " + itemName,
+    nav,
+    classificationSelect: classificationSelect,
+    errors: null,
+    account_firstname,
+    account_lastname,
+    account_email,
+    account_id
+    })
+  }
+}
+
+
+
 
 module.exports = {
   buildLogin, 
@@ -204,4 +250,5 @@ module.exports = {
   accountLogin, 
   buildLoginSuccess,
   buildUpdate,
+  updateAccount,
 };

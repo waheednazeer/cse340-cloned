@@ -1,6 +1,7 @@
 // Needed Resources 
 const express = require("express");
 const router = new express.Router();
+const jwt = require("jsonwebtoken");
 const regValidate = require('../utilities/account-validation.js')
 const utilities = require('../utilities/index.js')
 const accountController = require('../controllers/accountController.js'); 
@@ -21,6 +22,12 @@ router.post(
     regValidate.checkRegData,
     utilities.Util.handleErrors(accountController.registerAccount)
   )
+//Process the Update data
+router.post(
+  "/update",
+  utilities.Util.handleErrors(accountController.updateAccount)
+)
+
 // Process the login request
 router.post(
   "/login",
@@ -29,14 +36,16 @@ router.post(
   utilities.Util.handleErrors(accountController.accountLogin)
 )
 
+
+
 /** 
 router.post(
-  "/login",
+  "/update",
   (req, res) => {
-    res.status(200).send('login process')
+    res.status(200).send('update process')
   }
-)
-*/
+)*/
+
 
 
 module.exports = router;

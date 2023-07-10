@@ -174,7 +174,7 @@ Util.checkLogin = (req, res, next) => {
  **************************************** */
  Util.checkUser = async(req, res, next)=>{
   //let nav = await utilities.Util.getNav()
-  const token= req.cookies.jwt;
+  let token= req.cookies.jwt;
   console.log('token: ', token)
   if(token){
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decodedToken)=>{
@@ -190,7 +190,6 @@ Util.checkLogin = (req, res, next) => {
    })
   }else{
     res.locals.user= null;
-    //res.redirect('/')
     next();
   } 
 
