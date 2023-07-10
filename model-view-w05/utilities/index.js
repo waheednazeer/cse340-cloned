@@ -173,18 +173,17 @@ Util.checkLogin = (req, res, next) => {
  * Middleware For checking user from cookies
  **************************************** */
  Util.checkUser = async(req, res, next)=>{
-  //let nav = await utilities.Util.getNav()
+  
   let token= req.cookies.jwt;
-  console.log('token: ', token)
+  
   if(token){
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decodedToken)=>{
       if(err){
         res.locals.user= null;
       }else{
-        console.log(decodedToken);
+        //console.log(decodedToken);
         let user= decodedToken;
         res.locals.user= user;
-        console.log("User"+ user);
         next();
       }
    })
@@ -192,7 +191,6 @@ Util.checkLogin = (req, res, next) => {
     res.locals.user= null;
     next();
   } 
-
  }
 
 

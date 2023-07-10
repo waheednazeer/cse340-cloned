@@ -72,8 +72,6 @@ async function updateAccount(account_firstname, account_lastname, account_email,
  * ************************** */
 async function updatePassword(account_password, account_id){
 
-  console.log("Account Model");
-  console.log("account_id "+ account_id);
   try {
     const sql = "UPDATE account SET account_password=$1 WHERE account_id=$2 RETURNING *"
     return await pool.query(sql, [account_password, account_id])

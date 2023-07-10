@@ -249,8 +249,6 @@ const updateAccount = async function (req, res, next) {
  * ************************** */
 const updatePassword = async function (req, res, next) {
 
-  console.log("PASSWORD CONTROLLOER");
-  
   let nav = await utilities.Util.getNav()
   const {
     account_password,
@@ -272,7 +270,7 @@ const updatePassword = async function (req, res, next) {
      })
    }
 
-  console.log("account_id "+ account_id);
+  //console.log("account_id "+ account_id);
 
   const updateResult = await accountModel.updatePassword(
     hashedPassword,
