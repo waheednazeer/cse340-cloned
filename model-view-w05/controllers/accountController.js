@@ -83,7 +83,7 @@ async function registerAccount(req, res) {
 /* ****************************************
  *  Process login request
  * ************************************ */
-async function accountLogin(req, res) {
+async function accountLogin(req, res, next) {
   let nav = await utilities.Util.getNav()
   const { account_email, account_password } = req.body
   const accountData = await accountModel.getAccountByEmail(account_email)
@@ -104,8 +104,23 @@ async function accountLogin(req, res) {
    const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
    res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
    res.cookie("AccountType", accountData.account_type);
-   console.log('Cookies: ', req.cookies)
-  
+   //console.log('Cookies: ', req.cookies)
+   /*
+   const token= req.cookies.jwt;
+   console.log('token: ', token)
+   
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decodedToken)=>{
+     
+        console.log(decodedToken);
+        let user= decodedToken.account_type;
+        console.log("User"+ user);
+        next();
+   
+    })*/
+
+   
+   
+  //verif ends
    return res.redirect("/account/")
    }else{
     req.flash("notice", "Please check your password and try again.")
@@ -122,6 +137,9 @@ async function accountLogin(req, res) {
 
   }
  }
+
+
+  
 
  /* ****************************************
 *  Deliver login Success view

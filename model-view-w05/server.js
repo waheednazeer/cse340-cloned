@@ -65,8 +65,10 @@ app.use(static);
 app.use(utilities.Util.checkJWTToken)
 
 // index route
+app.get('*',utilities.Util.handleErrors(utilities.Util.checkUser));
 app.get('/', utilities.Util.handleErrors(baseController.buildHome));
 app.get('/', utilities.Util.handleErrors(accountController.buildLogin));
+
 
 // Inventory routes
 app.use("/inv", inventoryRoute);

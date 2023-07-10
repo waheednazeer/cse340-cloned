@@ -169,6 +169,32 @@ Util.checkLogin = (req, res, next) => {
     return res.redirect("/account/login")
   }
  }
+/* ****************************************
+ * Middleware For checking user from cookies
+ **************************************** */
+ Util.checkUser = async(req, res, next)=>{
+  //let nav = await utilities.Util.getNav()
+  const token= req.cookies.jwt;
+  console.log('token: ', token)
+  if(token){
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decodedToken)=>{
+      if(err){
+        res.locals.user= null;
+      }else{
+        console.log(decodedToken);
+        let user= decodedToken.account_type;
+        res.locals.user= user;
+        console.log("User"+ user);
+        next();
+      }
+   })
+  }else{
+    res.locals.user= null;
+    res.redirect('/account/login')
+  } 
+
+ }
+
 
 /* ****************************************
  * Middleware For Handling Errors
