@@ -9,23 +9,38 @@ const utilities = require("../utilities/")
 const buildManagement = async function (req, res, next) {
   try{
     let nav = await utilities.Util.getNav();
-
     const classificationSelect = await utilities.Util.buildClassificationList();
-
-    res.render("./management/management", {
-        title: "Vehicle Management ",
-        message: "Vehicle Management System",
+    let user= res.locals.user;
+    if(user){
+      if(user.account_type== 'admin'){
+        res.render("./management/management", {
+          title: "Vehicle Management ",
+          message: "Vehicle Management System",
+          nav,
+          errors: null, 
+          classificationSelect,     
+      })
+      }
+    }else{
+      let user= null;
+      let nav = await utilities.Util.getNav();
+      res.render("./errors/error", {
+        title: "Forbidden",
+        message: "Forbidden",
         nav,
-        errors: null, 
-        classificationSelect,     
-    })
+        user,
+      })
+
+    }
+
   } catch(error){
+    let user= null;
     let nav = await utilities.Util.getNav();
     res.render("./errors/error", {
-      title: error,
+      title: "Forbidden",
       message: error,
       nav,
-      
+      user,
     })
   } 
 }

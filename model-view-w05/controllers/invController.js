@@ -198,11 +198,11 @@ invCont.deleteInventoryItem = async function (req, res, next) {
   )
 
   if (updateResult) {
-    const itemName = updateResult.inv_make + " " + updateResult.inv_model
+    const itemName = "Inventory Item";
     req.flash("notice", `The ${itemName} was successfully deleted.`)
     res.redirect("/inv/")
   } else {
-    const itemName = `${inv_make} ${inv_model}`
+    const itemName =  "Inventory Item";
     req.flash("notice", "Sorry, the delete failed.")
     res.status(501).render("inventory/deleteInventory", {
     title: "Delete " + itemName,
