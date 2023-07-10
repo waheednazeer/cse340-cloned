@@ -174,7 +174,7 @@ invCont.deleteInventoryView = async function (req, res, next) {
     
   const itemName = `${itemData[0].inv_make} ${itemData[0].inv_model}`
   res.render("./inventory/deleteInventory", {
-    title: "Edit " + itemName,
+    title: "Delete " + itemName,
     nav,
     classificationSelect: classificationSelect,
     errors: null,
