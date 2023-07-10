@@ -103,6 +103,7 @@ async function accountLogin(req, res) {
    delete accountData.account_password
    const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
    res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
+   res.cookie("AccountType", accountData.account_type);
    console.log('Cookies: ', req.cookies)
    return res.redirect("/account/")
    }

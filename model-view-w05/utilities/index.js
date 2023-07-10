@@ -29,22 +29,6 @@ Util.getNav = async function (req, res, next) {
 }
 
 /* ***********************************************************
- * Constructs the nav HTML Select Options for new Vehicle page
- *********************************************************** */
-Util.getClassificationOptions = async function (req, res, next) {
-  let data = await invModel.getClassifications()
-  let list = `<Select id=invClassification name=classification_id>`
-  
-  data.rows.forEach((row) => {
-    list += `<option value=${row.classification_id}>`
-    list += row.classification_name     
-    list += `</option>`
-  })
-  list += `</select>`
-  return list
-}
-
-/* ***********************************************************
  * buildClassificationList for edit inventory
  *********************************************************** */
 Util.buildClassificationList = async function (req, res, next) {

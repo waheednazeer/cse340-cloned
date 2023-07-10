@@ -10,7 +10,7 @@ const buildManagement = async function (req, res, next) {
   try{
     let nav = await utilities.Util.getNav();
 
-    const classificationSelect = await utilities.Util.getClassificationOptions();
+    const classificationSelect = await utilities.Util.buildClassificationList();
 
     res.render("./management/management", {
         title: "Vehicle Management ",
@@ -58,12 +58,12 @@ const buildNewClassification = async function (req, res, next) {
 const buildNewVehicle = async function (req, res, next) {
     try{
       let nav = await utilities.Util.getNav();
-      let selectOptions = await utilities.Util.getClassificationOptions();
+      const classificationSelect = await utilities.Util.buildClassificationList();
       res.render("./management/newVehicle", {
           title: "Add New Vehicle ",
           message: "Add New Vehicle",
           nav,
-          selectOptions,
+          classificationSelect,
           errors: null,     
       })
     } catch(error){
@@ -120,7 +120,7 @@ async function addNewClassificationName(req, res) {
 async function addNewVehicle(req, res) {
 
   let nav = await utilities.Util.getNav()
-  let selectOptions = await utilities.Util.getClassificationOptions();
+  const classificationSelect = await utilities.Util.buildClassificationList();
   const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id } = req.body
 
  
@@ -146,13 +146,14 @@ async function addNewVehicle(req, res) {
     res.status(201).render("./management/management", {
       title: "Management",
       nav,
+      classificationSelect,
     })
   } else {
     req.flash("notice", "Sorry, adding vehicle failed.")
     res.status(501).render("./management/newVehicle", {
       title: "New Vehicle",
       nav,
-      selectOptions,
+      classificationSelect,
     })
   }
 }

@@ -392,8 +392,12 @@ form{
 .managementView a{
     color:white;
 }
-#inventoryManagementList{
+#inventoryManagementList {
   margin-left: 25px;
+
+}
+#inventoryManagementList select{
+  width:25%;
 }
 #inventoryDisplay a{
   color: white;

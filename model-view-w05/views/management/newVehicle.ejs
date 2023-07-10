@@ -11,8 +11,8 @@
 
 <div class="loginForm">
 <form action="/inv/newVehicle" method="post">
-  <label for="invClassification">Choose Classification:</label>
-  <%- selectOptions %>
+  <label for="classificationList">Choose Classification:</label>
+  <%- classificationSelect %>
 
     <label for="invMake">Make:</label>
     <input type="Text" id="invMake" name="inv_make" required value="<%= locals.inv_make %>" pattern="[a-zA-Z]{3,}" placeholder="min 3 letters, no space">
