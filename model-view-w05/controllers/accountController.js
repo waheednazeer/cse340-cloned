@@ -37,9 +37,7 @@ async function buildUpdate(req, res, next) {
   let nav = await utilities.Util.getNav()
   const account_id = parseInt(req.params.account_id)
   const accountData = await accountModel.getAccountById(account_id)
-  console.log(accountData.account_firstname);
-  //const { account_firstname, account_lastname, account_email } = req.body
-   
+     
   res.render("account/update", {
     title: "Update your account",
     nav,
@@ -174,11 +172,11 @@ async function buildLoginSuccess(req, res, next) {
   let userType;
   if(user){
     if(user.account_type== 'client'){
-      userType= user.account_type;
+      userType= user.account_firstname;
       managementInv = null;
       updateAccount = `<p class="updateLink"><a href="/account/update/`+ user.account_id +`">`+ `Update your account`+ `</a>`+`</p>`
     }else{
-      userType= user.account_type;
+      userType= user.account_firstname;
       updateAccount = `<p class="updateLink"><a href="/account/update/`+ user.account_id +`">`+ `Update your account`+ `</a>`+`</p>` 
       managementInv = `<p class="updateLink"><a href="/inv">`+ `Manage Inventory`+ `</a>`+`</p>` 
     }
@@ -221,7 +219,7 @@ const updateAccount = async function (req, res, next) {
   )
 
   if (updateResult) {
-    const itemName = updateResult.account_firstName;
+    const itemName = "Account";
     req.flash("notice", `The ${itemName} was successfully updated.`)
     res.redirect("/account")
   } else {
@@ -241,6 +239,41 @@ const updateAccount = async function (req, res, next) {
   }
 }
 
+/* ***************************
+ *  Update Account Password
+ * ************************** */
+const updatePassword = async function (req, res, next) {
+
+  let nav = await utilities.Util.getNav()
+  const {
+    account_password,
+    account_id,
+
+  } = req.body
+  const updateResult = await accountModel.updatePassword(
+    account_password,
+    account_id,
+  )
+
+  if (updateResult) {
+    const itemName = "Password";
+    req.flash("notice", `The ${itemName} was successfully updated.`)
+    res.redirect("/account")
+  } else {
+   
+    const itemName = updateResult.account_firstname;
+    req.flash("notice", "Sorry, the insert failed.")
+    res.status(501).render("account/loginSuccess", {
+    title: "Edit " + itemName,
+    nav,
+    classificationSelect: classificationSelect,
+    errors: null,
+    account_password,
+    account_id
+    })
+  }
+}
+
 
 
 
@@ -252,4 +285,5 @@ module.exports = {
   buildLoginSuccess,
   buildUpdate,
   updateAccount,
+  updatePassword
 };
