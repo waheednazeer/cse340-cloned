@@ -27,6 +27,10 @@ router.post(
     regValidate.checkInventoryData, 
     utilities.Util.handleErrors(invController.invCont.updateInventory))
 
+    // route for update inventory
+router.post(
+    "/delete/",
+    utilities.Util.handleErrors(invController.invCont.deleteInventoryItem))
 
 
 module.exports = router;
