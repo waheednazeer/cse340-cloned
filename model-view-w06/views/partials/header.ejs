@@ -1,0 +1,17 @@
+<header id="top-header">
+    <section class="siteName">
+      <h1><a href="/" title="Return to home page">CSE Motors</a></h1>
+    </section>
+    <div id="tools">
+      <ul>
+        <% if(user) {%>
+        <li>Welcome</li>
+        <li><a title="Loged in" href="/account"><%- user.account_firstname %></a></li>
+        <li><a title="Logout" href="/logout">Logout</a></li>
+        <% }else{ %>
+          <li><a title="Click to log in" href="/account/login">My Account</a></li>
+        <% } %>
+      </ul>
+      
+    </div>
+  </header>

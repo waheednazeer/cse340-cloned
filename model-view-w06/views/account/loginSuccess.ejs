@@ -1,0 +1,12 @@
+<h2><%- title %></h2>
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+
+  <%- messages() %>
+  <%- updateAccount %>
+  <%- managementInv %>
