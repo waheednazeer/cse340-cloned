@@ -10,6 +10,7 @@ dotenv.config()
 *  Deliver login view
 * *************************************** */
 async function buildLogin(req, res, next) {
+    res.clearCookie("jwt");
     let nav = await utilities.Util.getNav()
     res.render("account/login", {
       title: "Login",
