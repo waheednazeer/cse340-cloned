@@ -172,7 +172,7 @@ validate.checkPasswordData = async (req, res, next) => {
     res.redirect('/account')
     
   }
-
+  next();
 }
 
   /*
