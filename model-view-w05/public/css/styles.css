@@ -335,7 +335,9 @@ h2 a{
   border: 1px solid red;
   border-radius: 50px;
 }
-
+.notice{
+  background-color: red;
+}
 /* Accoung Login view styles*/
 .loginForm, .passwordForm, .deleteForm{
   width: 70%;
