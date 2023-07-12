@@ -1,2 +1,1 @@
-SELECT * from inventory;
---DELETE FROM account Where account_id=11;
+SELECT * FROM account;

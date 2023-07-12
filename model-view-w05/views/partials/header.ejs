@@ -7,7 +7,7 @@
         <% if(user) {%>
         <li>Welcome</li>
         <li><a title="Loged in" href="/account"><%- user.account_firstname %></a></li>
-        <li><a title="Logout" href="/logout">Logout</a></li>
+        <li><a title="Exit your account" href="/logout">Logout</a></li>
         <% }else{ %>
           <li><a title="Click to log in" href="/account/login">My Account</a></li>
         <% } %>

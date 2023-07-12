@@ -73,7 +73,24 @@ validate.accountUpdateRules = () => {
 
   ]
 }
- 
+/*  **********************************
+ *  Update password Validation Rules
+ * ********************************* */
+validate.passwordUpdateRules = () => {
+  return [
+    // password is required and must be strong password
+    body("account_password")
+      .trim()
+      .isStrongPassword({
+        minLength: 12,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+      .withMessage("Password does not meet requirements."),
+  ]
+} 
 
 
   
@@ -81,18 +98,20 @@ validate.accountUpdateRules = () => {
  * Check data and return errors or continue to registration
  * ***************************** */
 validate.checkRegData = async (req, res, next) => {
+  let user= res.locals.user;
   const { account_firstname, account_lastname, account_email } = req.body
   let errors = []
   errors = validationResult(req)
   if (!errors.isEmpty()) {
     let nav = await utilities.Util.getNav()
-    res.render("account/", {
+    res.render("./account/", {
       errors,
       title: "Update Account",
       nav,
       account_firstname,
       account_lastname,
       account_email,
+      user,
     })
     return
   }
@@ -127,6 +146,7 @@ validate.checkLoginData = async (req, res, next) => {
   let errors = []
   errors = validationResult(req)
   if (!errors.isEmpty()) {
+    console.log(errors);
     let nav = await utilities.Util.getNav()
     res.render("account/login", {
       errors,
@@ -139,6 +159,30 @@ validate.checkLoginData = async (req, res, next) => {
   next()
 }
 
+
+/* ******************************
+ * Check data and return errors or continue to registration
+ * ***************************** */
+validate.checkPasswordData = async (req, res, next) => {
+    let user= res.locals.user;
+    const { account_password } = req.body
+    let errors = []
+    errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      let nav = await utilities.Util.getNav()
+      console.log(errors);
+      req.flash("notice", "Sorry, the insert failed.");
+        res.status(501).render("./account/update", {
+        errors,
+        title: "Update Account",
+        nav,
+        account_password,
+        user,
+      })
+      return
+    }
+    next()
+  }
 
 
 

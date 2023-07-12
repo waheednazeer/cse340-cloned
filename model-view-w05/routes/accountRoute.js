@@ -32,6 +32,8 @@ router.post(
 //Process the Update password
 router.post(
   "/update-password",
+  regValidate.passwordUpdateRules(),
+  regValidate.checkPasswordData,
   utilities.Util.handleErrors(accountController.updatePassword)
 )
 
