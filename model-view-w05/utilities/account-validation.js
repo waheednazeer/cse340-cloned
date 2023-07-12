@@ -164,6 +164,18 @@ validate.checkLoginData = async (req, res, next) => {
  * Check data and return errors or continue to registration
  * ***************************** */
 validate.checkPasswordData = async (req, res, next) => {
+  let errors = []
+  errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    
+    req.flash("notice", "Password does not meet requirements.");
+    res.redirect('/account')
+    
+  }
+
+}
+
+  /*
     let user= res.locals.user;
     const { account_password } = req.body
     let errors = []
@@ -183,7 +195,7 @@ validate.checkPasswordData = async (req, res, next) => {
     }
     next()
   }
-
+*/
 
 
   module.exports = validate
