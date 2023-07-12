@@ -337,6 +337,9 @@ h2 a{
 }
 .notice{
   background-color: red;
+  margin: 30px;
+  padding: 5px;
+  color: black;
 }
 /* Accoung Login view styles*/
 .loginForm, .passwordForm, .deleteForm{
@@ -398,8 +401,14 @@ form{
   background-color: red;
 }
 #pwd-hint{
-  font-size: 10.9px;
+  font-size: 17px;
+  font-style: italic;
 }
+.signup{
+  color: white;
+}
+
+
 .managementView a{
     color:white;
 }
