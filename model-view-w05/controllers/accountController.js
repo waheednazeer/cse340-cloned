@@ -215,8 +215,11 @@ const updateAccount = async function (req, res, next) {
     
   if (updateResult) {
    
-    req.flash("notice", `The account was successfully updated.`);
-    //res.clearCookie("jwt");
+    let errors= null;
+    if(errors == null)
+    {
+      req.flash("notice", `Account Updated`)
+    }
    
     res.redirect('/account');
    

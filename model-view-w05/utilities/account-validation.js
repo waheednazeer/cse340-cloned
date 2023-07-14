@@ -112,7 +112,7 @@ validate.checkRegData = async (req, res, next) => {
     
     req.flash("notice", msg);
     res.redirect('/account/update/'+ac_id)
-    
+  return; 
   }
   next();
  
@@ -173,7 +173,7 @@ validate.checkPasswordData = async (req, res, next) => {
  
     req.flash("notice", "Password does not meet requirements.");
     res.redirect('/account/update/'+ac_id)
-    
+  return; 
   }
   next();
 }
