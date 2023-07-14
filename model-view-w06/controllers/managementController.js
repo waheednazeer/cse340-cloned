@@ -12,28 +12,19 @@ const buildManagement = async function (req, res, next) {
     const classificationSelect = await utilities.Util.buildClassificationList();
     let user= res.locals.user;
     if(user){
-      if(user.account_type== 'admin'){
+      if(user.account_type== 'client'){
+        req.flash("notice", "You do not have rights to access these resources");
+        res.redirect('/account');
+      }
+    }
         res.render("./management/management", {
           title: "Vehicle Management ",
           message: "Vehicle Management System",
           nav,
           errors: null, 
           classificationSelect,     
-      })
-      }
-    }else{
-      let user= null;
-      let nav = await utilities.Util.getNav();
-      res.render("./errors/error", {
-        title: "Forbidden",
-        message: "Forbidden",
-        nav,
-        user,
-      })
-
-    }
-
-  } catch(error){
+      })  
+    }catch(error){
     let user= null;
     let nav = await utilities.Util.getNav();
     res.render("./errors/error", {
@@ -44,6 +35,8 @@ const buildManagement = async function (req, res, next) {
     })
   } 
 }
+  
+
 /* ***************************
  *  New Classification view
  * ************************** */

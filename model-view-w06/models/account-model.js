@@ -80,6 +80,7 @@ async function updatePassword(account_password, account_id){
   }
 }
 
+
 /* ***************************
  *  Delete Account
  * ************************** */
@@ -100,5 +101,5 @@ async function deleteAccount(account_id) {
     updateAccount, 
     getAccountById,
     updatePassword,
-    deleteAccount,
+    deleteAccount
   };

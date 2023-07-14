@@ -335,7 +335,12 @@ h2 a{
   border: 1px solid red;
   border-radius: 50px;
 }
-
+.notice{
+  background-color: red;
+  margin: 30px;
+  padding: 5px;
+  color: black;
+}
 /* Accoung Login view styles*/
 .loginForm, .passwordForm, .deleteForm{
   width: 70%;
@@ -385,7 +390,7 @@ form{
   display: flex;
   flex-direction: column;
 }
-#btn{
+#btn, #updateBtn, #passwordBtn{
   margin-top: 10px;
   width: fit-content;
   padding: 5px;
@@ -396,8 +401,14 @@ form{
   background-color: red;
 }
 #pwd-hint{
-  font-size: 10.9px;
+  font-size: 17px;
+  font-style: italic;
 }
+.signup{
+  color: white;
+}
+
+
 .managementView a{
     color:white;
 }
@@ -440,7 +451,6 @@ nav{
 nav ul {
 flex-direction: column;
 justify-content: left;
-align-items: left;
 list-style: none;
 margin: 0;
 padding: 0; 

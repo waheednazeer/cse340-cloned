@@ -161,6 +161,9 @@ async function buildLoginSuccess(req, res, next) {
   let managementInv;
   let updateAccount; 
   let user= res.locals.user;
+  const accountData = await accountModel.getAccountById(user.account_id)
+  user.account_firstname= accountData.account_firstname;
+  
   let userType;
   if(user){
     if(user.account_type== 'client'){
@@ -209,12 +212,14 @@ const updateAccount = async function (req, res, next) {
     account_email,
     account_id,
   )
-
+    console.log(updateResult);
   if (updateResult) {
-    const itemName = account_firstname;
-    req.flash("notice", `The ${itemName}'s account was successfully updated. Please login with updated data.`);
-    res.clearCookie("jwt");
-    res.redirect("/account/login")
+   
+    req.flash("notice", `The account was successfully updated.`);
+    //res.clearCookie("jwt");
+   
+    res.redirect('/account');
+   
   } else {
    
     const itemName = updateResult.account_firstname;
@@ -222,7 +227,6 @@ const updateAccount = async function (req, res, next) {
     res.status(501).render("account/loginSuccess", {
     title: "Edit " + itemName,
     nav,
-    classificationSelect: classificationSelect,
     errors: null,
     account_firstname,
     account_lastname,
