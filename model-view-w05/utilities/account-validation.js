@@ -98,6 +98,7 @@ validate.passwordUpdateRules = () => {
  * Check data and return errors or continue to registration
  * ***************************** */
 validate.checkRegData = async (req, res, next) => {
+  
   let user= res.locals.user;
   const { account_firstname, account_lastname, account_email } = req.body
   let errors = []
@@ -164,12 +165,15 @@ validate.checkLoginData = async (req, res, next) => {
  * Check data and return errors or continue to registration
  * ***************************** */
 validate.checkPasswordData = async (req, res, next) => {
+  const { account_id }  = req.body
+  const ac_id = parseInt(account_id)
+ 
   let errors = []
   errors = validationResult(req)
   if (!errors.isEmpty()) {
-    
+ 
     req.flash("notice", "Password does not meet requirements.");
-    res.redirect('/account')
+    res.redirect('/account/update/'+ac_id)
     
   }
   next();

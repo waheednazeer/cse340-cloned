@@ -212,7 +212,7 @@ const updateAccount = async function (req, res, next) {
     account_email,
     account_id,
   )
-    console.log(updateResult);
+    
   if (updateResult) {
    
     req.flash("notice", `The account was successfully updated.`);
@@ -270,10 +270,15 @@ const updatePassword = async function (req, res, next) {
   )
 
   if (updateResult) {
-    const itemName = "Password";
-    req.flash("notice", `The ${itemName} was successfully updated. Please login with new password!`)
-    res.clearCookie("jwt");
-    res.redirect("/account/login")
+    
+    let errors= null;
+    if(errors == null)
+    {
+      req.flash("notice", `Password Updated`)
+    }
+        
+    //res.clearCookie("jwt");
+    res.redirect("/account")
   } else {
    
     req.flash("notice", "Sorry, the insert failed.")
