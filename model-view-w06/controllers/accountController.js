@@ -296,6 +296,64 @@ const updatePassword = async function (req, res, next) {
 }
 
 
+  /* ****************************************
+*  Deliver Delete view
+* *************************************** */
+async function buildDeleteAccountView(req, res) {
+  let nav = await utilities.Util.getNav()
+  const account_id = parseInt(req.params.account_id)
+  const accountData = await accountModel.getAccountById(account_id)
+     
+  res.render("account/delete", {
+    title: accountData.account_firstname + ": Do you really want to delete your account?",
+    nav,
+    errors: null,
+    account_firstname: accountData.account_firstname, 
+    account_lastname: accountData.account_lastname, 
+    account_email: accountData.account_email,
+    account_id: account_id
+})
+}
+
+
+/* ***************************
+ *  process Delete Account Data
+ * ************************** */
+const deleteAccount = async function (req, res) {
+
+  let nav = await utilities.Util.getNav()
+  const {
+    account_firstname,
+    account_lastname,
+    account_email,
+    account_id,
+
+  } = req.body
+  const updateResult = await accountModel.deleteAccount(
+    account_id,
+  )
+
+  if (updateResult) {
+    const itemName = "You account from our database";
+    req.flash("notice", `The ${itemName} was successfully deleted.`);
+    res.clearCookie("jwt");
+    res.redirect("/account/register")
+  } else {
+   
+    const itemName = updateResult.account_firstname;
+    req.flash("notice", "Sorry, the insert failed.")
+    res.status(501).render("account/loginSuccess", {
+    title: "Edit " + itemName,
+    nav,
+    classificationSelect: classificationSelect,
+    errors: null,
+    account_firstname,
+    account_lastname,
+    account_email,
+    account_id
+    })
+  }
+}
 
 
 module.exports = {
@@ -306,5 +364,7 @@ module.exports = {
   buildLoginSuccess,
   buildUpdate,
   updateAccount,
-  updatePassword
+  updatePassword,
+  buildDeleteAccountView,
+  deleteAccount,
 };

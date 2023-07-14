@@ -390,7 +390,7 @@ form{
   display: flex;
   flex-direction: column;
 }
-#btn, #updateBtn, #passwordBtn{
+#btn, #updateBtn, #passwordBtn, #deletebtn{
   margin-top: 10px;
   width: fit-content;
   padding: 5px;
