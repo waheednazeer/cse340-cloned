@@ -10,7 +10,6 @@ const accountController = require('../controllers/accountController.js');
 router.get('/login', utilities.Util.handleErrors(accountController.buildLogin));
 router.get('/register', utilities.Util.handleErrors(accountController.buildRegister));
 router.get('/update/:account_id', utilities.Util.handleErrors(accountController.buildUpdate));
-router.get('/delete/:account_id', utilities.Util.handleErrors(accountController.buildDeleteAccountView));
 
 // Route to login success page
 router.get('/', utilities.Util.checkLogin, utilities.Util.handleErrors(accountController.buildLoginSuccess));
@@ -47,11 +46,6 @@ router.post(
   utilities.Util.handleErrors(accountController.accountLogin)
 )
 
-//Process the delete account request
-router.post(
-  "/delete",
-  utilities.Util.handleErrors(accountController.deleteAccount)
-)
 
 
 /** 

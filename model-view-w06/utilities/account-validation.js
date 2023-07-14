@@ -55,13 +55,13 @@ validate.accountUpdateRules = () => {
     // firstname is required and must be string
     body("account_firstname")
       .trim()
-      .isLength({ min: 1 })
+      .isLength({ min: 3 })
       .withMessage("Please provide a first name."), // on error this message is sent.
 
     // lastname is required and must be string
     body("account_lastname")
       .trim()
-      .isLength({ min: 2 })
+      .isLength({ min: 3 })
       .withMessage("Please provide a last name."), // on error this message is sent.
 
     // valid email is required and cannot already exist in the database
@@ -98,24 +98,24 @@ validate.passwordUpdateRules = () => {
  * Check data and return errors or continue to registration
  * ***************************** */
 validate.checkRegData = async (req, res, next) => {
-  let user= res.locals.user;
-  const { account_firstname, account_lastname, account_email } = req.body
+  const { account_id, account_email, account_firstname, account_lastname }  = req.body
+  const ac_id = parseInt(account_id)
+ 
   let errors = []
   errors = validationResult(req)
+  let msg=null;
   if (!errors.isEmpty()) {
-    let nav = await utilities.Util.getNav()
-    res.render("./account/", {
-      errors,
-      title: "Update Account",
-      nav,
-      account_firstname,
-      account_lastname,
-      account_email,
-      user,
-    })
-    return
+    errors.array().forEach(error => {
+      msg= error.msg
+      console.log(msg);
+   })
+    
+    req.flash("notice", msg);
+    res.redirect('/account/update/'+ac_id)
+  return; 
   }
-  next()
+  next();
+ 
 }
   
  /*  **********************************
@@ -164,13 +164,16 @@ validate.checkLoginData = async (req, res, next) => {
  * Check data and return errors or continue to registration
  * ***************************** */
 validate.checkPasswordData = async (req, res, next) => {
+  const { account_id }  = req.body
+  const ac_id = parseInt(account_id)
+ 
   let errors = []
   errors = validationResult(req)
   if (!errors.isEmpty()) {
-    
+ 
     req.flash("notice", "Password does not meet requirements.");
-    res.redirect('/account')
-    
+    res.redirect('/account/update/'+ac_id)
+  return; 
   }
   next();
 }

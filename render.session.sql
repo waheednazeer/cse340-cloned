@@ -1,8 +1,8 @@
-SELECT * FROM account;
+--SELECT * FROM account;
 
---UPDATE account
---SET account_password='1234567890@Ab'
---WHERE account_id=14;
+UPDATE account
+SET account_type='admin'
+WHERE account_id=19;
 
 --DELETE FROM account
---WHERE account_id=14;
+--WHERE account_id=10;
