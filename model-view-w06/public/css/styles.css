@@ -412,14 +412,14 @@ form{
 .managementView a{
     color:white;
 }
-#inventoryManagementList {
+#inventoryManagementList, #accountManagementList {
   margin-left: 25px;
 
 }
-#inventoryManagementList select{
+#inventoryManagementList select, #accountManagementList select{
   width:25%;
 }
-#inventoryDisplay a{
+#inventoryDisplay a, #accountManagementList a{
   color: white;
   margin-left:20px ;
 

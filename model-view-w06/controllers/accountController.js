@@ -371,7 +371,7 @@ const deleteAccount = async function (req, res) {
 * *************************************** */
 async function buildAccountManagementView(req, res) {
   let nav = await utilities.Util.getNav()
-  
+  let user= res.locals.user;
   let accountSelect = await utilities.Util.buildAccountList();
   console.log(accountSelect);
   res.render("account/accountManagement", {
@@ -379,6 +379,7 @@ async function buildAccountManagementView(req, res) {
     nav,
     errors: null,
     accountSelect,
+    user,
 })
 }
 

@@ -43,7 +43,7 @@ function buildAccountList(data) {
      console.log(data.account_firstname + ", " + data.account_lastname); 
      dataTable += `<tr><td>${data.account_firstname} ${data.account_lastname}</td>`; 
      dataTable += `<td><a href='/account/update/${data.account_id}' title='Click to update'>Modify</a></td>`; 
-     dataTable += `<td><a href='/inv/delete/${data.account_id}' title='Click to delete'>Delete</a></td></tr>`; 
+     dataTable += `<td><a href='/account/delete/${data.account_id}' title='Click to delete'>Delete</a></td></tr>`; 
     
     dataTable += '</tbody>'; 
     // Display the contents in the Inventory Management view 
