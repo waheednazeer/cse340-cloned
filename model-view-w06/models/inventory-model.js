@@ -92,11 +92,19 @@ async function deleteInventoryItem(inv_id) {
   }
 }
 
+/* ***************************
+ *  Get all accounts data
+ * ************************** */
+async function getAccounts(){
+  return await pool.query("SELECT * FROM public.account ORDER BY account_firstname")
+}
+
 
 module.exports = {
   getClassifications, 
   getInventoryByClassificationId, 
   getInventoryDetailByinvId, 
   updateInventory,
-  deleteInventoryItem
+  deleteInventoryItem,
+  getAccounts
 };

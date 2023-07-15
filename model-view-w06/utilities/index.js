@@ -193,6 +193,23 @@ Util.checkLogin = (req, res, next) => {
   } 
  }
 
+ /* ***********************************************************
+ * buildAccountList for edit account
+ *********************************************************** */
+Util.buildAccountList = async function (req, res, next) {
+  let data = await invModel.getAccounts();
+  let list = `<Select id=accountList name=account_id>`
+  
+  data.rows.forEach((row) => {
+    list += `<option value=${row.account_id}>`
+    list += row.account_firstname     
+    list += `</option>`
+  })
+  list += `</select>`
+  
+  return list
+}
+
 
 /* ****************************************
  * Middleware For Handling Errors

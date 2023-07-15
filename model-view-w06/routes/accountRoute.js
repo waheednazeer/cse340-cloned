@@ -12,6 +12,10 @@ router.get('/register', utilities.Util.handleErrors(accountController.buildRegis
 router.get('/update/:account_id', utilities.Util.handleErrors(accountController.buildUpdate));
 router.get('/delete/:account_id', utilities.Util.handleErrors(accountController.buildDeleteAccountView));
 
+// account management
+router.get('/accountManagement', utilities.Util.handleErrors(accountController.buildAccountManagementView));
+router.get('/getAccount/:account_id', utilities.Util.handleErrors(accountController.getAccountJSON));
+
 // Route to login success page
 router.get('/', utilities.Util.checkLogin, utilities.Util.handleErrors(accountController.buildLoginSuccess));
 

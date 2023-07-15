@@ -160,7 +160,8 @@ async function buildLoginSuccess(req, res, next) {
   let nav = await utilities.Util.getNav();
   let managementInv = null;
   let updateAccount = null;
-  let deleteAccount = null; 
+  let deleteAccount = null;
+  let manageAccounts = null; 
   let user= res.locals.user;
   const accountData = await accountModel.getAccountById(user.account_id)
   user.account_firstname= accountData.account_firstname;
@@ -173,12 +174,17 @@ async function buildLoginSuccess(req, res, next) {
       updateAccount = `<p class="updateLink"><a href="/account/update/`+ user.account_id +`">`+ `Update your account`+ `</a>`+`</p>`
       deleteAccount = `<p class="updateLink"><a href="/account/delete/`+ user.account_id +`">`+ `Delete your account`+ `</a>`+`</p>`
     }else{
+      if(user.account_type== 'admin'){
       userType= user.account_firstname;
       updateAccount = `<p class="updateLink"><a href="/account/update/`+ user.account_id +`">`+ `Update your account`+ `</a>`+`</p>` 
       managementInv = `<p class="updateLink"><a href="/inv">`+ `Manage Inventory`+ `</a>`+`</p>` 
-      deleteAccount = `<p class="updateLink"><a href="/account/delete/`+ user.account_id +`">`+ `Delete your account`+ `</a>`+`</p>`
+      manageAccounts = `<p class="updateLink"><a href="/account/accountManagement">`+ `Manage Accounts`+ `</a>`+`</p>`
+    }else{
+      userType= user.account_firstname;
+      updateAccount = `<p class="updateLink"><a href="/account/update/`+ user.account_id +`">`+ `Update your account`+ `</a>`+`</p>` 
+      managementInv = `<p class="updateLink"><a href="/inv">`+ `Manage Inventory`+ `</a>`+`</p>` 
     }
-
+      }  
   }
 
   req.flash(
@@ -192,6 +198,7 @@ async function buildLoginSuccess(req, res, next) {
     updateAccount,
     managementInv,
     deleteAccount,
+    manageAccounts,
   })
 
 }
@@ -359,6 +366,38 @@ const deleteAccount = async function (req, res) {
   }
 }
 
+  /* ****************************************
+*  Deliver Delete view
+* *************************************** */
+async function buildAccountManagementView(req, res) {
+  let nav = await utilities.Util.getNav()
+  
+  let accountSelect = await utilities.Util.buildAccountList();
+  console.log(accountSelect);
+  res.render("account/accountManagement", {
+    title:"Manage Account Data",
+    nav,
+    errors: null,
+    accountSelect,
+})
+}
+
+/* ***************************
+ *  Return account by acccount id As JSON
+ * ************************** */
+const getAccountJSON = async (req, res, next) => {
+  const account_id = parseInt(req.params.account_id)
+  console.log("in Account Controller "+account_id);
+  const accountData = await accountModel.getAccountById(account_id);
+  
+  if (accountData.account_id) {
+    console.log("JSON RETURNED");
+    return res.json(accountData)
+  } else {
+    next(new Error("No data returned"))
+  }
+  next();
+}
 
 module.exports = {
   buildLogin, 
@@ -371,4 +410,6 @@ module.exports = {
   updatePassword,
   buildDeleteAccountView,
   deleteAccount,
+  buildAccountManagementView,
+  getAccountJSON,
 };
