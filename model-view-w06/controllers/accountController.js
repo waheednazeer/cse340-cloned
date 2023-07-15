@@ -158,8 +158,9 @@ async function accountLogin(req, res, next) {
 * *************************************** */
 async function buildLoginSuccess(req, res, next) {
   let nav = await utilities.Util.getNav();
-  let managementInv;
-  let updateAccount; 
+  let managementInv = null;
+  let updateAccount = null;
+  let deleteAccount = null; 
   let user= res.locals.user;
   const accountData = await accountModel.getAccountById(user.account_id)
   user.account_firstname= accountData.account_firstname;
@@ -170,10 +171,12 @@ async function buildLoginSuccess(req, res, next) {
       userType= user.account_firstname;
       managementInv = null;
       updateAccount = `<p class="updateLink"><a href="/account/update/`+ user.account_id +`">`+ `Update your account`+ `</a>`+`</p>`
+      deleteAccount = `<p class="updateLink"><a href="/account/delete/`+ user.account_id +`">`+ `Delete your account`+ `</a>`+`</p>`
     }else{
       userType= user.account_firstname;
       updateAccount = `<p class="updateLink"><a href="/account/update/`+ user.account_id +`">`+ `Update your account`+ `</a>`+`</p>` 
       managementInv = `<p class="updateLink"><a href="/inv">`+ `Manage Inventory`+ `</a>`+`</p>` 
+      deleteAccount = `<p class="updateLink"><a href="/account/delete/`+ user.account_id +`">`+ `Delete your account`+ `</a>`+`</p>`
     }
 
   }
@@ -188,6 +191,7 @@ async function buildLoginSuccess(req, res, next) {
     errors: null,
     updateAccount,
     managementInv,
+    deleteAccount,
   })
 
 }
