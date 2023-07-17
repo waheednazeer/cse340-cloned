@@ -374,13 +374,27 @@ async function buildAccountManagementView(req, res) {
   let user= res.locals.user;
   let accountSelect = await utilities.Util.buildAccountList();
   console.log(accountSelect);
-  res.render("account/accountManagement", {
-    title:"Manage Account Data",
-    nav,
-    errors: null,
-    accountSelect,
-    user,
-})
+  if(user.account_type == 'admin'){
+    res.render("account/accountManagement", {
+      title:"Manage Account Data",
+      nav,
+      errors: null,
+      accountSelect,
+      user,
+  })
+
+  }else{
+    res.render("account/accountManagement", {
+      title:"FORBIDDEN",
+      nav,
+      errors: null,
+      accountSelect: null,
+      user,
+  })
+
+  }
+
+  
 }
 
 /* ***************************
