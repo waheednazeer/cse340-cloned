@@ -384,17 +384,10 @@ async function buildAccountManagementView(req, res) {
   })
 
   }else{
-    res.render("account/accountManagement", {
-      title:"FORBIDDEN",
-      nav,
-      errors: null,
-      accountSelect: null,
-      user,
-  })
+    req.flash("notice", `FORBIDDEN`);
+    res.redirect("/account")
 
-  }
-
-  
+  }  
 }
 
 /* ***************************
